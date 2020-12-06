@@ -50,7 +50,8 @@
       "imports": {
         "@single-spa/welcome": "https://unpkg.com/single-spa-welcome/dist/single-spa-welcome.js",
         "@xeiteam/root-config": "//localhost:9000/xeiteam-root-config.js",
-        "declared-jurisdictions-client": "http://localhost:4200/main.js"
+        "declared-jurisdictions-client": "http://localhost:4200/main.js",
+        "@xeiteam/navbar": "http://localhost:4201/main.js"
       }
     }
   </script>
@@ -76,9 +77,9 @@
 
   <template id="single-spa-layout">
     <single-spa-router>
-      <!-- <nav>
+      <nav>
         <application name="@<%- orgName %>/navbar"></application>
-      </nav> -->
+      </nav>
       <main>
         <route default>
           <!-- <application name="@single-spa/welcome"></application> -->
