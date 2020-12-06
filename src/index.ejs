@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Root Config</title>
-
   <!--
     Remove this if you only support browsers that support async/await.
     This is needed by babel to share largeish helper code for compiling async/await in older
@@ -50,8 +49,9 @@
       "imports": {
         "@single-spa/welcome": "https://unpkg.com/single-spa-welcome/dist/single-spa-welcome.js",
         "@xeiteam/root-config": "//localhost:9000/xeiteam-root-config.js",
-        "declared-jurisdictions-client": "http://localhost:4200/main.js",
-        "@xeiteam/navbar": "http://localhost:4201/main.js"
+        "@xeiteam/declared-jurisdictions-client": "http://localhost:4200/main.js",
+        "@xeiteam/navbar": "http://localhost:4201/main.js",
+        "@xeiteam/sidebar": "http://localhost:4202/main.js"
       }
     }
   </script>
@@ -78,14 +78,25 @@
   <template id="single-spa-layout">
     <single-spa-router>
       <nav>
-        <application name="@<%- orgName %>/navbar"></application>
+        <application name="@<%- orgName %>/navbar" error="errorElement"></application>
       </nav>
-      <main>
-        <route default>
-          <!-- <application name="@single-spa/welcome"></application> -->
-          <application name="declared-jurisdictions-client"></application>
-        </route>
-      </main>
+      <div class="content">
+        <div class="sidebar">
+          <application name="@<%- orgName %>/sidebar" error="errorElement"></application>
+        </div>
+        <main>
+          <route default>
+            <!-- <application name="@single-spa/welcome"></application> -->
+            <application name="@<%- orgName %>/declared-jurisdictions-client" error="errorElement"></application>
+          </route>
+          <route path="app2">
+            <div>APP2</div>
+          </route>
+          <!-- <route path="declaraciones-juradas">
+            <application name="@<%- orgName %>/declared-jurisdictions-client"></application>
+          </route> -->
+        </main>
+      </div>
     </single-spa-router>
   </template>
 </head>
@@ -96,3 +107,23 @@
   <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
 </body>
 </html>
+<style type="text/css">
+
+.content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    min-height: 100%;
+}
+
+.content .sidebar {
+    min-height: 100%;
+    width: 20%;
+    border: 1px solid steelblue;
+}
+
+.content main {
+    min-height: 100%;
+    width: 80%;
+}
+</style>
