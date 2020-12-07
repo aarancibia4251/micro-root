@@ -87,7 +87,7 @@
         <main>
           <route default>
             <!-- <application name="@single-spa/welcome"></application> -->
-            <application name="@<%- orgName %>/declared-jurisdictions-client" error="errorElement"></application>
+            <application name="@<%- orgName %>/declared-jurisdictions-client" props="declarations,loggedInUser" error="errorElement"></application>
           </route>
           <route path="app2">
             <div>APP2</div>
